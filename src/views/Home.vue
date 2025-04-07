@@ -1,9 +1,6 @@
   <script lang="ts" setup>
-  import { ref } from 'vue';
-  import Header from '../components/Header.vue';
-  import Footer from '../components/Footer.vue';
-  import PricingCard from '../components/PricingCard.vue';
-  
+  import { ref } from 'vue'
+  import Header from '@/components/base/Header.vue'
   // Определяем реактивные данные
   const pricingPlans = ref([
     { title: 'Free Plan', price: 'Free', description: '10 super-pupers included.', features: ['Feature A', 'Feature B'] },

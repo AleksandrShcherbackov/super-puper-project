@@ -3,10 +3,14 @@
   import Header from '@/components/base/Header.vue'
   import Footer from '@/components/base/Footer.vue'
   // Определяем реактивные данные
-  const pricingPlans = ref([
-    { title: 'Free Plan', price: 'Free', description: '10 super-pupers included.', features: ['Feature A', 'Feature B'] },
-    // другие тарифы...
-  ]);
+  import { usePlansStore } from '@/stores/plansStore';
+
+  const plansStore = usePlansStore();
+
+  // Инициализируем планы при загрузке компонента
+  plansStore.initializePlans();
+
+  const plans = plansStore.getPlans;
   </script>
   
   <template>

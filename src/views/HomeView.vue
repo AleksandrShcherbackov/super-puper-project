@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { scrollToSection } from '@/common/utils';
 import BaseHeader from '@/components/base/BaseHeader.vue'
 import BaseFooter from '@/components/base/BaseFooter.vue'
 // Определяем реактивные данные
@@ -21,14 +22,19 @@ const plans = plansStore.getPlans
         <h1>{{ $t('home.title') }}</h1>
         <p>{{ $t('home.description1') }}</p>
         <p>{{ $t('home.description2') }}</p>
-        <router-link to="/order" class="bg-orange text-white px-4 py-2 rounded">{{
+
+        <button 
+          class="bg-orange text-white px-4 py-2 rounded"
+          @click="scrollToSection('plans')"
+        >{{
           $t('home.cta')
-        }}</router-link>
+        }}</button>
       </div>
     </section>
 
     <!-- Pricing Section -->
     <section
+      id="plans"
       class="bg-cover bg-center text-white p-8 h-full max-h-12"
       style="background-image: url('./src/assets/images/main-bg-1.jpg')"
     >

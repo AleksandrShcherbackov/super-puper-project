@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
+import TosView from '@/views/TosView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,7 +9,17 @@ const router = createRouter({
       path: '/:lang?',
       name: 'Home',
       component: HomeView
-    }
+    },
+    {
+      path: '/en/tos',
+      name: 'EnTos',
+      component: TosView
+    },
+    {
+      path: '/ru/tos',
+      name: 'RuTos',
+      component: TosView
+    },
   ]
 })
 

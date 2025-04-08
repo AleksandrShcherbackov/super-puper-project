@@ -22,4 +22,8 @@ app.use(createPinia())
 app.use(router)
 app.use(i18n)
 
+
+// Установите i18n как глобальное свойство для доступа в любом месте приложения
+app.config.globalProperties.$i18n = i18n;
+
 app.mount('#app')

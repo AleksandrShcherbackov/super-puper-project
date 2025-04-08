@@ -1,2 +1,3 @@
 import en from './en'
-export const messages = { en }
+import ru from './ru'
+export const messages = { en, ru }

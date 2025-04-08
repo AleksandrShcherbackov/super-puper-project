@@ -35,5 +35,8 @@ export default {
       description: 'Unlimited super-pupers included.',
       features: ['We want an additional 100 super-dupers for an additional price.']
     }
+  },
+  texts: {
+    plans: 'plan | plans | plans',
   }
 }

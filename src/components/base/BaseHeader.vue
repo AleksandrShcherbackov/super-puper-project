@@ -9,6 +9,7 @@
         </router-link>
         <router-link to="/en" class="mr-4">{{ $t('header.home') }}</router-link>
         <router-link to="/en/tos">{{ $t('header.terms') }}</router-link>
+        <router-link to="/en/order">{{ $t('header.order') }}</router-link>
       </nav>
     </div>
   </header>

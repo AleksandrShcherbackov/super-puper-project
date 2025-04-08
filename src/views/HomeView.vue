@@ -39,7 +39,7 @@ const plans = plansStore.getPlans
       <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
       <!-- Пример карточек тарифов -->
       <div class="relative container mx-auto z-20 flex flex-col gap-4">
-        <h2 class="text-4xl">Планы:</h2>
+        <h2 class="text-4xl capitalize">{{ $t('texts.plans', 1) }}:</h2>
         <ul class="flex flex-wrap justify-center gap-4">
           <li
             v-for="plan in plans"

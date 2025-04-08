@@ -9,6 +9,7 @@ const plansStore = usePlansStore()
 plansStore.initializePlans()
 
 const plans = plansStore.getPlans
+
 </script>
 
 <template>
@@ -32,11 +33,31 @@ const plans = plansStore.getPlans
     <!-- Pricing Section -->
     <section
       id="plans"
-      class="bg-cover bg-center text-white p-8 h-full max-h-12"
+      class="relative bg-cover bg-center text-white p-8 h-full"
       style="background-image: url('./src/assets/images/main-bg-1.jpg')"
     >
+      <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
       <!-- Пример карточек тарифов -->
-      <div class="container mx-auto"></div>
+      <div class="relative container mx-auto z-20 flex flex-col gap-4">
+        <h2 class="text-4xl">Планы:</h2>
+        <ul class="flex flex-wrap justify-center gap-4">
+          <li
+            v-for="plan in plans"
+            :key="plan.title"
+            class="bg-white text-black p-6 rounded-lg shadow-lg w-full md:w-1/2 lg:w-1/3"
+          >
+            <h3 class="text-xl font-semibold mb-2">{{ plan.title }}</h3>
+            <p class="text-lg font-bold mb-4">{{ plan.price }}</p>
+            <p class="mb-4">{{ plan.description }}</p>
+            <p v-if="plan.features" class="mb-4">Особенности: {{ plan.features.join(', ')}}</p>
+            <button 
+              class="bg-orange text-white px-4 py-2 rounded"
+            >{{
+              $t('home.cta')
+            }}</button>
+          </li>
+        </ul>
+      </div>
     </section>
 
     

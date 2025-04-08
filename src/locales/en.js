@@ -17,5 +17,23 @@ export default {
         features: ['Feature A', 'Feature B']
       }
     }
+  },
+  cards: {
+    freePlan: {
+      title: 'Free Plan',
+      price: 'Free',
+      description: '10 super-pupers included.',
+    },
+    basicPlan: {
+      title: 'Basic Plan',
+      price: '$10/month',
+      description: '50 super-pupers included.',
+    },
+    premiumPlan: {
+      title: 'Premium Plan',
+      price: '$20/month',
+      description: 'Unlimited super-pupers included.',
+      features: ['We want an additional 100 super-dupers for an additional price.']
+    }
   }
 }

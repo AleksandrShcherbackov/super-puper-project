@@ -14,7 +14,7 @@ const plans = plansStore.getPlans
 <template>
   <div class="h-screen w-full flex flex-col">
     <section class="bg-darkBlue text-white pt-8 pb-8">
-      <div class="container mx-auto">
+      <div class="container mx-auto space-y-4">
         <h1>{{ $t('home.title') }}</h1>
         <p>{{ $t('home.description1') }}</p>
         <p>{{ $t('home.description2') }}</p>

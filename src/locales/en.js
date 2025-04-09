@@ -6,8 +6,12 @@ export default {
   },
   home: {
     title: 'Welcome to SuperPuper Service',
-    description1: 'SuperPuper Service provides amazing features.',
-    description2: 'Join us and enjoy the benefits.',
+    description1: `SuperPuper Service provides amazing features. 
+      SuperPuper Service provides amazing features that simplify complex tasks and save you time. 
+      With SuperPuper Service, you can enjoy seamless integration and unparalleled efficiency. 
+      Our innovative solutions at SuperPuper Service are designed to meet your unique needs. 
+      Experience the power of cutting-edge technology with SuperPuper Service's amazing features`,
+    description2: 'Join us and enjoy the benefits. ',
     cta: 'Order now',
     pricing: {
       free: {

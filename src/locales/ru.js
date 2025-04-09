@@ -62,6 +62,6 @@ export default {
     }
   },
   footer: {
-    copyright: '© 2023 SuperPuper Сервис. Все права защищены.'
+    copyright: ' {msg} SuperPuper Сервис. Все права защищены.'
   }
 }

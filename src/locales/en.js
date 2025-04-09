@@ -62,6 +62,6 @@ export default {
     }
   },
   footer: {
-    copyright: '© 2023 SuperDuper Service. All rights reserved.'
+    copyright: ' {msg} SuperDuper Service. All rights reserved.'
   }
 }

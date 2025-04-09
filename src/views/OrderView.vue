@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import type { FormData, FormDataErrors } from '@/common/resources'
+import TarifSelector from '@/components/TarifSelector.vue'
 // Определяем реактивные данные
 import { usePlansStore } from '@/stores/plansStore'
 
@@ -87,6 +88,7 @@ const validateForm = () => {
 
 const submitForm = () => {
   if (validateForm()) {
+    // тут должна быть какая-то логика отправки, но мы ничего никуда не отправляем, поэтому её нет
     successMessage.value = 'Аккаунт создан, пожалуйста проверьте входящие сообщения.'
     Object.keys(form.value).forEach((key) => (form.value[key as keyof FormData] = ''))
     selectedTariff.value = null
@@ -95,53 +97,46 @@ const submitForm = () => {
 </script>
 
 <template>
-  <div class="subscription-form border border-cyan-800 p-8 rounded max-h-540px">
-    <h2>Выберите тариф</h2>
+  <div class="container mx-auto flex items-center justify-center">
+    <div class="m-auto flex flex-col border border-cyan-800 p-4 rounded max-w-3xl">
+    <h2>{{ $t('order.form.tarrifChoose') }}</h2>
     <div class="tariff-list">
-      <div
-        v-for="tariff in tariffs"
-        :key="tariff.id"
-        class="tariff-card"
-        :class="{ selected: selectedTariff === tariff.id }"
-        @click="selectTariff(tariff.id)"
-      >
-        <div class="indicator" v-if="selectedTariff === tariff.id">✔️</div>
-        <h3>{{ tariff.title }}</h3>
-        <p>Супер-пуперы: {{ tariff.superPuppers }}</p>
-        <p>Цена: {{ tariff.price }} ₽</p>
-      </div>
+      <TarifSelector 
+        :tariffs="tariffs"
+        @changeTariff="selectTariff"      
+      />
     </div>
 
-    <h2>Создать аккаунт</h2>
+    <h2>{{ $t('order.form.submit') }}</h2>
     <form @submit.prevent="submitForm">
       <div class="form-group">
-        <label for="fullName">Полное имя:</label>
+        <label for="fullName">{{ $t('order.form.fullName') }}:</label>
         <input type="text" id="fullName" v-model="form.fullName" required />
         <span v-if="errors.fullName" class="error">{{ errors.fullName }}</span>
       </div>
 
       <div class="form-group">
-        <label for="email">Email:</label>
+        <label for="email">{{ $t('order.form.email') }}:</label>
         <input type="email" id="email" v-model="form.email" required />
         <span v-if="errors.email" class="error">{{ errors.email }}</span>
       </div>
 
       <div class="form-group">
-        <label for="password">Пароль:</label>
+        <label for="password">{{ $t('order.form.password') }}:</label>
         <input type="password" id="password" v-model="form.password" required autocomplete="new-password" />
         <span v-if="errors.password" class="error">{{ errors.password }}</span>
       </div>
 
-      <h3>Данные для оплаты</h3>
+      <h3>{{ $t('order.form.sailВata') }}</h3>
 
       <div class="form-group">
-        <label for="cardNumber">Номер карты:</label>
+        <label for="cardNumber">{{ $t('order.form.cardNumber') }}:</label>
         <input type="text" id="cardNumber" v-model="form.cardNumber" required />
         <span v-if="errors.cardNumber" class="error">{{ errors.cardNumber }}</span>
       </div>
 
       <div class="form-group">
-        <label for="expiryDate">Месяц/Год:</label>
+        <label for="expiryDate">{{ $t('order.form.date') }}:</label>
         <input type="text" id="expiryDate" placeholder="MM/YY" v-model="form.expiryDate" required />
         <span v-if="errors.expiryDate" class="error">{{ errors.expiryDate }}</span>
       </div>
@@ -152,38 +147,17 @@ const submitForm = () => {
         <span v-if="errors.cvc" class="error">{{ errors.cvc }}</span>
       </div>
 
-      <button type="submit">Создать аккаунт</button>
+      <button type="submit">{{ $t('order.form.submit') }}</button>
 
       <!-- Success Message -->
       <p v-if="successMessage" class="success">{{ successMessage }}</p>
     </form>
   </div>
+  </div>
+  
 </template>
 
 <style scoped>
-.subscription-form {
-  max-width: 600px;
-  margin: auto;
-}
-
-.tariff-list {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.tariff-card {
-  border: 1px solid #ccc;
-  padding: 16px;
-  margin-bottom: 16px;
-  cursor: pointer;
-  transition: border-color 0.3s;
-}
-
-.tariff-card.selected {
-  border-color: #007bff;
-}
-
 .error {
   color: red;
   font-size: 0.875rem;

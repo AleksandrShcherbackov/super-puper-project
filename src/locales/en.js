@@ -22,12 +22,12 @@ export default {
     freePlan: {
       title: 'Free Plan',
       price: 'Free',
-      description: '10 super-pupers included.',
+      description: '10 super-pupers included.'
     },
     basicPlan: {
       title: 'Basic Plan',
       price: '$10/month',
-      description: '50 super-pupers included.',
+      description: '50 super-pupers included.'
     },
     premiumPlan: {
       title: 'Premium Plan',
@@ -37,6 +37,6 @@ export default {
     }
   },
   texts: {
-    plans: 'plan | plans | plans',
+    plans: 'plan | plans | plans'
   }
 }

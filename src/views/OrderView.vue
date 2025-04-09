@@ -1,95 +1,97 @@
-<script setup lang='ts'>
-import { ref } from 'vue';
-import type { FormData } from '@/common/resources';
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import type { FormData, FormDataErrors } from '@/common/resources'
+// Определяем реактивные данные
+import { usePlansStore } from '@/stores/plansStore'
 
-const tariffs = ref([
-  { id: 1, name: 'Базовый', superPuppers: 5, price: 500 },
-  { id: 2, name: 'Стандартный', superPuppers: 10, price: 1000 },
-  { id: 3, name: 'Премиум', superPuppers: 20, price: 2000 },
-]);
+const plansStore = usePlansStore()
+// Инициализируем планы при загрузке компонента
+plansStore.initializePlans()
 
-const selectedTariff = ref<number | null>(null);
+const tariffs = computed(() => plansStore.getPlansShort)
+
+const selectedTariff = ref<number | null>(null)
+
 const form = ref<FormData>({
   fullName: '',
   email: '',
   password: '',
   cardNumber: '',
   expiryDate: '',
-  cvc: '',
-});
-
+  cvc: ''
+})
 
 // можно отрефакторить на vuelidate, но это уже другая история
-const errors = ref<FormData>({
+const errors = ref<FormDataErrors>({
   fullName: '',
   email: '',
   password: '',
   cardNumber: '',
   expiryDate: '',
-  cvc: '',
-});
+  cvc: ''
+})
 
-const successMessage = ref<string>('');
+const successMessage = ref<string>('')
 
 const selectTariff = (id: number): void => {
-  selectedTariff.value = id;
-};
+  selectedTariff.value = id
+}
 
 const validateForm = () => {
   // Reset errors
-  Object.keys(errors.value).forEach((key) => (errors.value[key as keyof FormData] = ''));
+  Object.keys(errors.value).forEach((key) => (errors.value[key as keyof FormData] = ''))
 
-  let isValid = true;
+  let isValid = true
 
   if (!form.value.fullName) {
-    errors.value.fullName = 'Полное имя обязательно.';
-    isValid = false;
+    errors.value.fullName = 'Полное имя обязательно.'
+    isValid = false
   }
 
   if (!form.value.email) {
-    errors.value.email = 'Email обязателен.';
-    isValid = false;
+    errors.value.email = 'Email обязателен.'
+    isValid = false
   } else if (!/\S+@\S+\.\S+/.test(form.value.email)) {
-    errors.value.email = 'Некорректный формат email.';
-    isValid = false;
+    errors.value.email = 'Некорректный формат email.'
+    isValid = false
   }
 
   if (!form.value.password) {
-    errors.value.password = 'Пароль обязателен.';
-    isValid = false;
+    errors.value.password = 'Пароль обязателен.'
+    isValid = false
   }
 
   if (!form.value.cardNumber) {
-    errors.value.cardNumber = 'Номер карты обязателен.';
-    isValid = false;
+    errors.value.cardNumber = 'Номер карты обязателен.'
+    isValid = false
   } else if (!/^\d{16}$/.test(form.value.cardNumber)) {
-    errors.value.cardNumber = 'Некорректный номер карты.';
-    isValid = false;
+    errors.value.cardNumber = 'Некорректный номер карты.'
+    isValid = false
   }
 
   if (!form.value.expiryDate) {
-    errors.value.expiryDate = 'Месяц/Год обязателен.';
-    isValid = false;
+    errors.value.expiryDate = 'Месяц/Год обязателен.'
+    isValid = false
   }
 
   if (!form.value.cvc) {
-    errors.value.cvc = 'CVC обязателен.';
-    isValid = false;
+    errors.value.cvc = 'CVC обязателен.'
+    isValid = false
   } else if (!/^\d{3}$/.test(form.value.cvc)) {
-    errors.value.cvc = 'Некорректный CVC.';
-    isValid = false;
+    errors.value.cvc = 'Некорректный CVC.'
+    isValid = false
   }
 
-  return isValid;
-};
+  return isValid
+}
 
 const submitForm = () => {
   if (validateForm()) {
-    successMessage.value = 'Аккаунт создан, пожалуйста проверьте входящие сообщения.';
-    Object.keys(form.value).forEach((key) => (form.value[key as keyof FormData] = ''));
-    selectedTariff.value = null;
+    successMessage.value = 'Аккаунт создан, пожалуйста проверьте входящие сообщения.'
+    Object.keys(form.value).forEach((key) => (form.value[key as keyof FormData] = ''))
+    selectedTariff.value = null
   }
-};
+}
 </script>
 
 <template>
@@ -104,7 +106,7 @@ const submitForm = () => {
         @click="selectTariff(tariff.id)"
       >
         <div class="indicator" v-if="selectedTariff === tariff.id">✔️</div>
-        <h3>{{ tariff.name }}</h3>
+        <h3>{{ tariff.title }}</h3>
         <p>Супер-пуперы: {{ tariff.superPuppers }}</p>
         <p>Цена: {{ tariff.price }} ₽</p>
       </div>
@@ -126,7 +128,7 @@ const submitForm = () => {
 
       <div class="form-group">
         <label for="password">Пароль:</label>
-        <input type="password" id="password" v-model="form.password" required />
+        <input type="password" id="password" v-model="form.password" required autocomplete="new-password" />
         <span v-if="errors.password" class="error">{{ errors.password }}</span>
       </div>
 
@@ -179,7 +181,7 @@ const submitForm = () => {
 }
 
 .tariff-card.selected {
-  border-color: #007bff; 
+  border-color: #007bff;
 }
 
 .error {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { scrollToSection } from '@/common/utils';
+import { scrollToSection } from '@/common/utils'
 // Определяем реактивные данные
 import { usePlansStore } from '@/stores/plansStore'
 
@@ -9,24 +9,19 @@ const plansStore = usePlansStore()
 plansStore.initializePlans()
 
 const plans = plansStore.getPlans
-
 </script>
 
 <template>
   <div class="h-screen w-full flex flex-col">
-    
     <section class="bg-darkBlue text-white pt-8 pb-8">
       <div class="container mx-auto">
         <h1>{{ $t('home.title') }}</h1>
         <p>{{ $t('home.description1') }}</p>
         <p>{{ $t('home.description2') }}</p>
 
-        <button 
-          class="bg-orange text-white px-4 py-2 rounded"
-          @click="scrollToSection('plans')"
-        >{{
-          $t('home.cta')
-        }}</button>
+        <button class="bg-orange text-white px-4 py-2 rounded" @click="scrollToSection('plans')">
+          {{ $t('home.cta') }}
+        </button>
       </div>
     </section>
 
@@ -49,17 +44,11 @@ const plans = plansStore.getPlans
             <h3 class="text-xl font-semibold mb-2">{{ plan.title }}</h3>
             <p class="text-lg font-bold mb-4">{{ plan.price }}</p>
             <p class="mb-4">{{ plan.description }}</p>
-            <p v-if="plan.features" class="mb-4">Особенности: {{ plan.features.join(', ')}}</p>
-            <button 
-              class="bg-orange text-white px-4 py-2 rounded"
-            >{{
-              $t('home.cta')
-            }}</button>
+            <p v-if="plan.features" class="mb-4">Особенности: {{ plan.features.join(', ') }}</p>
+            <button class="bg-orange text-white px-4 py-2 rounded">{{ $t('home.cta') }}</button>
           </li>
         </ul>
       </div>
     </section>
-
-    
   </div>
 </template>

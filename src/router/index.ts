@@ -25,17 +25,17 @@ const router = createRouter({
       path: '/:lang?/order',
       name: 'Order',
       component: OrderView
-    },
+    }
   ]
 })
 
 router.beforeEach((to, from, next) => {
   if (to.path === '/') {
-    const userLanguage = navigator?.language || navigator?.userLanguage; 
-    const langPrefix = userLanguage.startsWith('ru') ? '/ru' : '/en'; 
-    next(langPrefix); 
+    const userLanguage = navigator?.language || navigator?.userLanguage
+    const langPrefix = userLanguage.startsWith('ru') ? '/ru' : '/en'
+    next(langPrefix)
   } else {
-    next(); 
+    next()
   }
 })
 

@@ -41,6 +41,27 @@ export default {
     }
   },
   texts: {
-    plans: 'plan | plans | plans'
+    plans: 'plan | plans | plans',
+    supepupers: 'superduper | superdupers | superdupers',
+    price: 'price | prices | prices'
+  },
+  order: {
+    title: 'Order Now',
+    description: 'Fill out the form below to order now.',
+    form: {
+      fullName: 'Full Name',
+      email: 'Email',
+      password: 'Password',
+      phone: 'Phone',
+      message: 'Message',
+      submit: 'Submit',
+      cardNumber: 'Card Number',
+      sailВata: 'Payment Data',
+      date: 'Month/Year',
+      tarrifChoose: 'Choose Tariff',
+    }
+  },
+  footer: {
+    copyright: '© 2023 SuperDuper Service. All rights reserved.'
   }
 }

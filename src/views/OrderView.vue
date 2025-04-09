@@ -95,7 +95,7 @@ const submitForm = () => {
 </script>
 
 <template>
-  <div class="subscription-form border border-cyan-800 p-8 rounded">
+  <div class="subscription-form border border-cyan-800 p-8 rounded max-h-540px">
     <h2>Выберите тариф</h2>
     <div class="tariff-list">
       <div

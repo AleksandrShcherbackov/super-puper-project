@@ -15,11 +15,11 @@ watch(route, (newRoute) => {
 </script>
 
 <template>
-  <main class="h-full">
-    <div class="flex flex-col relative">
+  <div class="min-h-screen">
+    <div class="flex flex-col relative min-h-screen">
       <BaseHeader />
-      <RouterView />
+      <RouterView class="flex-grow" />
       <BaseFooter />
     </div>
-  </main>
+  </div>
 </template>

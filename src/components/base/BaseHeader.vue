@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 
 const route = useRoute()
-const prefix = computed(() => route.path.includes('en') ? 'en' : 'ru')
+const prefix = computed<string>(() => (route.path.includes('en') ? 'en' : 'ru'))
 </script>
 
 <template>

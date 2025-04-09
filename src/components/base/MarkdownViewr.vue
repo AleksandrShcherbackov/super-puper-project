@@ -6,8 +6,8 @@ const props = defineProps<{
   filePath: string
 }>()
 
-const markdownContent = ref('')
-const compiledMarkdown = ref('')
+const markdownContent = ref<string | Promise<string>>('')
+const compiledMarkdown = ref<string | Promise<string>>('')
 
 onMounted(async () => {
   try {

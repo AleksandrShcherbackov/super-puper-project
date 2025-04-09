@@ -58,7 +58,7 @@ export default {
       cardNumber: 'Номер карты',
       sailВata: 'данные для оплаты',
       date: 'Месяц/Год',
-      tarrifChoose: 'Выберите тариф',
+      tarrifChoose: 'Выберите тариф'
     }
   },
   footer: {

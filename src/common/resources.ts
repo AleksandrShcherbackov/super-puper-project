@@ -8,10 +8,10 @@ export type FormData = {
 }
 
 export type FormDataErrors = {
-  fullName?: string;
-  email?: string;
-  password?: string;
-  cardNumber?: string;
-  expiryDate?: string;
-  cvc?: string;
-};
+  fullName?: string
+  email?: string
+  password?: string
+  cardNumber?: string
+  expiryDate?: string
+  cvc?: string
+}
